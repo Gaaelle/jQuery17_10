@@ -27,8 +27,38 @@ console.log(b);
 
 $(document).ready(function () {
 
-  var list = $('li');
-  list.css('background-color', 'aquamarine');
-  console.log(list);
+  function colorTask() {
+    $('li:odd').css('background-color', 'aquamarine'); //odd ou even
+  }
 
+  colorTask();
+  $('#content').text('Mon texte');
+
+  $('.active').css('background-color', 'red');
+  $('.active').hover(function() {
+    $(this).css('background-color', 'green');
+  }, function()  {
+    $(this).css('background-color', 'red');
+  });
+
+  $('#nav').on('click', 'li:even', function() {
+    var li = $(this);
+    li.css('color', 'yellow');
+  });
+
+  var input = $('#task');
+  input.on('keypress', function(event) {
+    if (event.keyCode === 13) {
+      var li = $(document.createElement('li'));
+      li.text(input.val());
+      li.hide().appendTo('#nav').slideDown(2500); //fadeIn = effet de fondu / 2500 = 2.5 secondes pout apparaître
+
+      input.val(''); //pour vider l'input une fois appuyé sur entrée
+      colorTask();
+    }
+  });
+
+  $('#nav li i').on('click', function() {
+    $(this).parent().remove();
+  });
 });
