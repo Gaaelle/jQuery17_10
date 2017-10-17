@@ -27,11 +27,17 @@ console.log(b);
 
 $(document).ready(function () {
 
+  $('#toggleStyle').on('click', function() {
+    $('.test').toggleClass('myClass');
+    // $('li:even').toggleClass('myClass');
+  });
+
   function colorTask() {
     $('li:odd').css('background-color', 'aquamarine'); //odd ou even
   }
 
   colorTask();
+
   $('#content').text('Mon texte');
 
   $('.active').css('background-color', 'red');
